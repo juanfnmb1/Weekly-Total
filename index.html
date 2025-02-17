@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      href="https://i.imgur.com/LQUXsx2.png"
+      sizes="16x16"
+      type="image/png"
+    />
+    <link
+      rel="icon"
+      href="https://i.imgur.com/4AwS1Bh.png"
+      sizes="32x32"
+      type="image/png"
+    />
+    <link
+      rel="shortcut icon"
+      href="https://i.imgur.com/LQUXsx2.png"
+      type="image/png"
+    />
+    <title>Income Tracker</title>
+    <style>
+      /* General Body Styles */
+      @media (max-width: 768px) {
+        /* Adjust the max-width as needed for your design */
+        .your-rectangle-class {
+          /* Replace with your rectangle's class or ID */
+          width: 100%; /* Make it full width */
+          height: 400px; /* Adjust height as needed */
+          padding: 20px; /* Add padding for better spacing */
+          font-size: 20px; /* Increase font size for readability */
+        }
+      }
+      @media (max-width: 768px) {
+        .resume-rectangle {
+          width: 100%; /* Full width */
+          height: 400px; /* Larger height */
+          padding: 20px; /* Additional padding */
+          font-size: 20px; /* Larger font size for better visibility */
+        }
+      }
+
+      body {
+        margin: 0; /* Remove body margin */
+        padding: 0; /* Remove body padding */
+        font-family: Arial, sans-serif;
+        background-color: #f9f9f9;
+        overflow-x: hidden; /* Prevent horizontal scroll */
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Center contents horizontally */
+      }
+
+      /* Navigation Styles */
+      nav {
+        background-color: #007bff; /* Background color */
+        padding: 15px; /* Padding around the navigation */
+        text-align: center; /* Center the text */
+        width: 100%; /* Full width */
+        margin: 0; /* Remove margin */
+        box-sizing: border-box; /* Include padding in the element's total width */
+      }
+
+      .nav-title {
+        color: white; /* Text color */
+        font-size: 24px; /* Font size */
+        margin: 0; /* Remove default margin */
+      }
+
+      /* Heading Styles */
+      h2 {
+        margin-bottom: 20px; /* Space below heading */
+        font-size: 24px; /* Increased font size for heading */
+      }
+
+      /* Input Container Styles */
+      .input-container {
+        display: flex;
+        flex-direction: column; /* Stacks inputs vertically */
+        align-items: center; /* Centers inputs horizontally */
+        width: 100%; /* Full width for input container */
+      }
+
+      /* Input Field Styles */
+      input {
+        margin: 10px 0; /* Margin on vertical axis */
+        width: 100%;
+        max-width: 400px; /* Set maximum width for input */
+        padding: 15px; /* Increased padding */
+        font-size: 20px; /* Increased font size */
+        border: 1px solid #ccc; /* Border color */
+        border-radius: 5px; /* Rounded corners */
+      }
+
+      /* Button Styles */
+      button {
+        padding: 10px 15px; /* Padding for buttons */
+        font-size: 16px; /* Font size for buttons */
+        cursor: pointer;
+        border: none; /* Remove default border */
+        border-radius: 5px; /* Rounded corners */
+        background-color: #007bff; /* Button background color */
+        color: white; /* Button text color */
+        transition: background-color 0.3s; /* Hover effect */
+        width: 100%; /* Full width for button */
+        max-width: 200px; /* Set maximum width for button */
+        margin: 5px 0; /* Vertical margin for spacing between buttons */
+      }
+
+      button:hover {
+        background-color: #0056b3; /* Darker blue on hover */
+      }
+
+      /* Total Display Styles */
+      #total {
+        margin-top: 20px; /* Space above total display */
+        font-weight: bold;
+        font-size: 22px; /* Increased font size for total income display */
+        text-align: center;
+      }
+
+      /* Calculator Styles */
+      #calculator {
+        margin-top: 20px; /* Space above calculator */
+        text-align: center; /* Center the calculator */
+        width: 100%; /* Full width for calculator */
+      }
+
+      /* Print View Styles */
+      .print-view {
+        display: none; /* Initially hidden */
+        text-align: center;
+        padding: 20px; /* Padding for spacing */
+        background-color: #f9f9f9; /* Light background for contrast */
+        border: 1px solid #ccc; /* Light border for definition */
+        border-radius: 8px; /* Rounded corners */
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+        max-width: 600px; /* Maximum width for content */
+        margin: 20px auto; /* Center the div */
+      }
+
+      .print-date {
+        font-size: 28px; /* Increased font size for date */
+        margin-bottom: 20px; /* Space below the date */
+        color: #333; /* Dark text color */
+      }
+
+      .income-item {
+        font-size: 24px; /* Increased font size for income items */
+        margin: 10px 0; /* Margin between items */
+      }
+      .black {
+        color: black;
+        font-weight: normal;
+      }
+      .total-income {
+        font-weight: bold; /* Bold for emphasis */
+        font-size: 26px; /* Slightly larger font for total income */
+        color: #007bff; /* Blue color for total */
+      }
+
+      .income-amount {
+        font-weight: bold; /* Bold text for amounts */
+        color: #333; /* Dark text color */
+        font-size: 24px; /* Increased font size for income amounts */
+      }
+
+      /* Back Button Styles */
+      .back-button {
+        padding: 10px 20px; /* Padding for button */
+        font-size: 16px; /* Font size for button */
+        cursor: pointer; /* Pointer cursor on hover */
+        border: none; /* Remove default border */
+        border-radius: 5px; /* Rounded corners for button */
+        background-color: #007bff; /* Button background color */
+        color: white; /* Button text color */
+        transition: background-color 0.3s; /* Smooth transition for hover effect */
+        margin-top: 20px; /* Space above button */
+      }
+
+      .back-button:hover {
+        background-color: #0056b3; /* Darker blue on hover */
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <h1 class="nav-title">Cuadre Semana</h1>
+    </nav>
+
+    <!-- Container for all inputs -->
+    <div class="input-container">
+      <h2>Fecha:</h2>
+      <input
+        type="text"
+        id="startDate"
+        placeholder="Fecha de Inicio (ej. 10/14/2024)"
+        pattern="\d{1,2}/\d{1,2}/\d{4}"
+        required
+        title="Formato: mm/dd/yyyy"
+      />
+      <input
+        type="text"
+        id="endDate"
+        placeholder="Fecha de Fin (ej. 10/18/2024)"
+        pattern="\d{1,2}/\d{1,2}/\d{4}"
+        required
+        title="Formato: mm/dd/yyyy"
+      />
+      <!-- Calculator Section -->
+      <div id="calculator">
+        <h2>Calculadora</h2>
+        <div id="calculator-total">Total: $0.00</div>
+        <input
+          type="number"
+          id="addNumber"
+          placeholder="Agregar número"
+          required
+        /><br />
+        <button type="button" onclick="addToTotal(event)">Agregar</button>
+        <button type="button" onclick="subtractLast(event)">
+          Restar Último
+        </button>
+        <button type="button" onclick="resetCalculator(event)">
+          Reiniciar
+        </button>
+      </div>
+
+      <!-- Date Inputs -->
+      <hr />
+      <h2>Totales:</h2>
+      <!-- Income Inputs -->
+      <input type="number" id="zelle" placeholder="Zelle ($)" required />
+      <input type="number" id="cash" placeholder="Cash ($)" required />
+      <input type="number" id="clover" placeholder="Clover ($)" required />
+      <button onclick="calculateTotal()">Calcular Total</button>
+    </div>
+    <button id="printButton" onclick="showPrintView()">Imprimir Resumen</button>
+    <div id="printView" class="print-view">
+      <h2 class="print-date" id="printDate"></h2>
+      <p class="income-item">
+        Zelle: $<span class="income-amount" id="printZelle"></span>
+      </p>
+      <p class="income-item">
+        Cash: $<span class="income-amount" id="printCash"></span>
+      </p>
+      <p class="income-item">
+        Clover: $<span class="income-amount" id="printClover"></span>
+      </p>
+      <p class="total-income">
+        Total Esta Semana: <span class="black">$</span
+        ><span class="income-amount" id="printTotal"></span>
+      </p>
+      <button class="back-button" onclick="goBack()">Volver</button>
+    </div>
+
+    <div id="total"></div>
+
+    <script>
+      function showPrintView() {
+        // Get values from inputs
+        const zelleAmount =
+          parseFloat(document.getElementById("zelle").value) || 0;
+        const cashAmount =
+          parseFloat(document.getElementById("cash").value) || 0;
+        const cloverAmount =
+          parseFloat(document.getElementById("clover").value) || 0;
+
+        // Calculate total income
+        const totalIncome = zelleAmount + cashAmount + cloverAmount;
+
+        // Get date values
+        const startDate = document.getElementById("startDate").value;
+        const endDate = document.getElementById("endDate").value;
+
+        // Update the print view with values
+        document.getElementById(
+          "printDate"
+        ).innerText = `${startDate} - ${endDate}`;
+        document.getElementById("printZelle").innerText =
+          zelleAmount.toFixed(2);
+        document.getElementById("printCash").innerText = cashAmount.toFixed(2);
+        document.getElementById("printClover").innerText =
+          cloverAmount.toFixed(2);
+        document.getElementById("printTotal").innerText =
+          totalIncome.toFixed(2);
+
+        // Show the print view and hide input section
+        document.querySelector(".input-container").style.display = "none";
+        document.getElementById("printView").style.display = "block";
+        document.getElementById("total").style.display = "none";
+        document.getElementById("printButton").style.display = "none"; // Hide the print button
+      }
+
+      let calculatorTotal = 0;
+      let lastAdded = []; // Array to keep track of added numbers
+      function addToTotal(event) {
+        event.preventDefault(); // Prevent default action if inside a form
+        const input = document.getElementById("addNumber"); // Reference to input element
+        const inputValue = parseFloat(input.value); // Get the input value as a number
+
+        if (!isNaN(inputValue)) {
+          // Check if input is a valid number
+          calculatorTotal += inputValue; // Add the input value to the total
+          lastAdded.push(inputValue); // Store the value for subtraction later
+          document.getElementById(
+            "calculator-total"
+          ).innerText = `Total: $${calculatorTotal.toFixed(2)}`; // Display total
+          input.value = ""; // Clear input field
+        } else {
+          alert("Please enter a valid number."); // Handle invalid input
+        }
+
+        input.focus(); // Focus back on the input element
+      }
+
+      function subtractLast() {
+        if (lastAdded.length > 0) {
+          // Check if there is anything to subtract
+          const lastValue = lastAdded.pop(); // Get the last added value
+          calculatorTotal -= lastValue; // Subtract it from the total
+          document.getElementById(
+            "calculator-total"
+          ).innerText = `Total: $${calculatorTotal.toFixed(2)}`; // Update the display
+        } else {
+          alert("No numbers to subtract."); // Handle case where there's nothing to subtract
+        }
+      }
+
+      function resetCalculator() {
+        calculatorTotal = 0; // Reset total to 0
+        lastAdded = []; // Clear the array of added numbers
+        document.getElementById(
+          "calculator-total"
+        ).innerText = `Total: $${calculatorTotal.toFixed(2)}`; // Reset display
+        document.getElementById("addNumber").value = ""; // Clear input field
+      }
+
+      // Event listeners for the Enter key
+      document
+        .getElementById("addNumber")
+        .addEventListener("keypress", function (event) {
+          if (event.key === "Enter") {
+            event.preventDefault(); // Prevent the default action (form submission)
+            addToTotal(); // Call the addToTotal function
+          }
+        });
+      // Call this function once at the start to set up listeners
+      function addInputListeners() {
+        document
+          .querySelectorAll("#startDate, #endDate, #zelle, #cash, #clover")
+          .forEach((input) => {
+            input.addEventListener("keypress", function (event) {
+              if (event.key === "Enter") {
+                event.preventDefault(); // Prevent the default action (form submission)
+                input.blur(); // Remove focus from the input
+              }
+            });
+          });
+      }
+
+      addInputListeners(); // Initialize input listeners once
+      // Add event listener for adding numbers
+
+      function subtractLast(event) {
+        event.preventDefault(); // Prevent default action if inside a form
+        if (lastAdded.length > 0) {
+          const lastNumber = lastAdded.pop(); // Remove the last number from the array
+          calculatorTotal -= lastNumber; // Subtract it from the total
+          document.getElementById(
+            "calculator-total"
+          ).innerText = `Total: $${calculatorTotal.toFixed(2)}`; // Update the displayed total
+        }
+        document.getElementById("addNumber").focus(); // Focus back on the input element
+      }
+
+      function resetCalculator() {
+        calculatorTotal = 0;
+        lastAdded = []; // Clear the history of added numbers
+        document.getElementById(
+          "calculator-total"
+        ).innerText = `Total: $${calculatorTotal.toFixed(2)}`;
+        document.getElementById("addNumber").value = ""; // Clear the input field
+      }
+
+      function calculateTotal() {
+        const zelleAmount =
+          parseFloat(document.getElementById("zelle").value) || 0;
+        const cashAmount =
+          parseFloat(document.getElementById("cash").value) || 0;
+        const cloverAmount =
+          parseFloat(document.getElementById("clover").value) || 0;
+
+        // Get the date values
+        const date1 = document.getElementById("startDate").value;
+        const date2 = document.getElementById("endDate").value;
+
+        const totalIncome = zelleAmount + cashAmount + cloverAmount;
+
+        // Display the total income with dates and use <br> for line breaks
+        document.getElementById(
+          "total"
+        ).innerHTML = `${date1}-${date2}<br>Total: $${totalIncome.toFixed(
+          2
+        )}<br>(Zelle: $${zelleAmount.toFixed(2)}, Cash: $${cashAmount.toFixed(
+          2
+        )}, Clover: $${cloverAmount.toFixed(2)})`;
+      }
+
+      function goBack() {
+        // Show all input sections again
+        document.querySelector(".input-container").style.display = "flex";
+        document.getElementById("printButton").style.display = "block";
+        document.getElementById("printView").style.display = "none";
+
+        // Ensure the total display is updated when going back
+        document.getElementById("total").style.display = "block"; // Show the total display
+      }
+      document
+        .getElementById("addNumber")
+        .addEventListener("keypress", function (event) {
+          if (event.key === "Enter") {
+            event.preventDefault(); // Prevent the default action (form submission)
+            addToTotal(event); // Call the addToTotal function
+          }
+        });
+      // Rest of your existing functions...
+    </script>
+  </body>
+</html>
